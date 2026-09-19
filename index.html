@@ -17,71 +17,81 @@
       <span>revalto<span class="brand-accent">.</span>tech</span>
     </a>
     <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-      <a href="#products">Products</a>
-      <a href="#why-revalto">Why us</a>
-      <a href="#contact">Contact</a>
+      <a href="#products" data-i18n="navProducts">Products</a>
+      <a href="#why-revalto" data-i18n="navWhy">Why us</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+      <a class="button button-small button-dark nav-cta" href="#contact" data-i18n="quoteButton">Request a quote</a>
     </nav>
+    <div class="language-switcher" aria-label="Language selector">
+      <label class="sr-only" for="language-select">Select language</label>
+      <select id="language-select" aria-label="Choose website language">
+        <option value="en">EN</option>
+        <option value="nl">NL</option>
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="ar">AR</option>
+      </select>
+    </div>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
       <span></span><span></span><span></span>
     </button>
-    <a class="button button-small button-dark" href="#contact">Request a quote</a>
   </header>
 
   <main id="top">
     <section class="hero section-shell">
       <div class="hero-copy reveal">
-        <h1>Tech with a<br /><em>second life.</em></h1>
-        <p class="hero-lede">From refurbished laptops and PCs to professional repairs and business-grade components, Revalto Tech delivers reliable, cost-effective solutions for consumers and companies.</p>
+        <h1 data-i18n="heroTitle">Tech with a<br /><em>second life.</em></h1>
+        <p class="hero-lede" data-i18n="heroSubtitle">From network equipment and servers to professional repairs and business-grade components, Revalto Tech brings hands-on experience from working with brands such as Samsung, Micron, Cisco, Kingston, SK hynix and many more.</p>
         <div class="hero-actions">
-          <a class="button button-lime" href="#contact">Find your solution</a>
-          <a class="text-link" href="#products">Explore our hardware</a>
+          <a class="button button-lime" href="#contact" data-i18n="findSolution">Find your solution</a>
+          <a class="text-link" href="#products" data-i18n="exploreHardware">Explore our hardware</a>
         </div>
       </div>
 
       <div class="hero-visual hero-photo reveal reveal-delay">
         <img src="images/RAM.jpg" alt="Close-up of RAM modules on a blue circuit board" />
-        <div class="visual-label">HARDWARE / 001</div>
-        <div class="visual-caption"><span>TESTED / READY</span><span>Hardware with history</span></div>
+        <div class="visual-label" data-i18n="visualLabel">HARDWARE / 001</div>
+        <div class="visual-caption"><span data-i18n="visualReady">TESTED / READY</span><span data-i18n="visualHistory">Hardware with history</span></div>
       </div>
     </section>
 
     <section class="content-section section-shell" id="products">
-      <div class="section-heading reveal"><h2>Tech that fits<br /><em>your world.</em></h2><p class="section-intro">Whether you need one dependable laptop or components for an entire business, we take the time to understand what will work for you.</p></div>
+      <div class="section-heading reveal"><h2 data-i18n="productsTitle">Tech that fits<br /><em>your world.</em></h2><p class="section-intro" data-i18n="productsIntro">Whether you need dependable network hardware, a server refresh, or components for an entire infrastructure, we take the time to understand what will work for you. Built on hands-on experience working with Samsung, Micron, Cisco, Kingston, SK hynix and many more.</p></div>
       <div class="product-grid">
-        <article class="product-card product-card-photo reveal"><div class="card-index">01</div><img class="product-photo" src="images/refurbishedlaptops.webp" alt="Row of refurbished laptops being prepared for reuse" /><h3>Laptops & PCs</h3><p>We help you find a refurbished device that feels right, works hard, and stays within budget.</p><a href="#contact" class="card-link">Tell us what you need</a></article>
-        <article class="product-card product-card-dark component-card reveal reveal-delay"><div class="card-index">02</div><img class="product-photo" src="images/SSDenHDD.webp" alt="Hands inspecting an SSD and hard drive beside a laptop" /><h3>Components</h3><p>Need an SSD, memory, server drive, or accessory? We’ll help you find the right part, not just any part.</p><a href="#contact" class="card-link">Talk components</a></article>
-        <article class="product-card product-card-photo reveal reveal-delay-2"><div class="card-index">03</div><img class="product-photo" src="images/pcrepairs.webp" alt="Technician repairing a desktop computer motherboard" /><h3>Repairs & enterprise</h3><p>When something stops working, we look for the sensible fix and help businesses keep moving.</p><a href="#contact" class="card-link">Talk to our team</a></article>
+        <article class="product-card product-card-photo reveal"><div class="card-index">01</div><img class="product-photo" src="images/networkswitch.webp" alt="Network switch equipment for enterprise infrastructure" /><h3 data-i18n="cardOneTitle">Network Equipment</h3><p data-i18n="cardOneText">We help you source reliable switches, routers, and networking hardware that keeps your infrastructure stable, secure, and ready to scale.</p><a href="#contact" class="card-link" data-i18n="cardOneLink">Talk network needs</a></article>
+        <article class="product-card product-card-dark component-card reveal reveal-delay"><div class="card-index">02</div><img class="product-photo" src="images/SSDenHDD.webp" alt="Hands inspecting an SSD and hard drive beside a laptop" /><h3 data-i18n="cardTwoTitle">Components</h3><p data-i18n="cardTwoText">Need an SSD, memory, server drive, or accessory? We’ll help you find the right part, not just any part.</p><a href="#contact" class="card-link" data-i18n="cardTwoLink">Talk components</a></article>
+        <article class="product-card product-card-photo reveal reveal-delay-2"><div class="card-index">03</div><img class=" product-photo" src="images/pcrepairs.webp" alt="Technician repairing a desktop computer motherboard" /><h3 data-i18n="cardThreeTitle">Repairs & enterprise</h3><p data-i18n="cardThreeText">When something stops working, we look for the sensible fix and help businesses keep moving. We are experienced in reparing and refurbishing electonic parts.</p><a href="#contact" class="card-link" data-i18n="cardThreeLink">Talk to our team</a></article>
       </div>
     </section>
 
     <section class="split-section section-shell" id="why-revalto">
-      <div class="split-statement reveal"><h2>We believe good<br />tech deserves a <em>future.</em></h2><p>We started Revalto because too much useful technology is discarded too soon. We recover, test, repair, and repurpose hardware so more people can get reliable tech without the unnecessary cost or waste.</p></div>
+      <div class="split-statement reveal"><h2 data-i18n="whyTitle">We believe good<br />tech deserves a <em>future.</em></h2><p data-i18n="whyIntro">We started Revalto because too much useful technology is discarded too soon. We recover, test, repair, and repurpose hardware so more people can get reliable tech without the unnecessary cost or waste.</p></div>
       <div class="principles reveal reveal-delay">
-        <div class="principle"><span class="principle-number">01</span><div><h3>We listen first</h3><p>You won’t get a one-size-fits-all answer from us. We ask what you’re trying to do, then recommend what makes sense.</p></div></div>
-        <div class="principle"><span class="principle-number">02</span><div><h3>We keep it practical</h3><p>Our job is to make good technology easier to access, easier to maintain, and easier on your budget.</p></div></div>
-        <div class="principle"><span class="principle-number">03</span><div><h3>We care what happens next</h3><p>Every repair and reuse decision is a chance to keep equipment useful and reduce the pressure on our planet.</p></div></div>
+        <div class="principle"><span class="principle-number">01</span><div><h3 data-i18n="principleOneTitle">We listen first</h3><p data-i18n="principleOneText">You won’t get a one-size-fits-all answer from us. We ask what you’re trying to do, then recommend what makes sense.</p></div></div>
+        <div class="principle"><span class="principle-number">02</span><div><h3 data-i18n="principleTwoTitle">We keep it practical</h3><p data-i18n="principleTwoText">Our job is to make good technology easier to access, easier to maintain, and easier on your budget.</p></div></div>
+        <div class="principle"><span class="principle-number">03</span><div><h3 data-i18n="principleThreeTitle">We care what happens next</h3><p data-i18n="principleThreeText">Every repair and reuse decision is a chance to keep equipment useful and reduce the pressure on our planet.</p></div></div>
       </div>
     </section>
 
     <section class="impact-section section-shell" id="impact">
-      <div class="impact-heading reveal"><h2>The world has<br /><em>enough tech.</em></h2><p>The world produces more than 50 million tonnes of e-waste every year. Less than 20% is properly recycled. Revalto Tech is built to change that.</p></div>
-      <div class="impact-stat reveal reveal-delay"><strong>50M<span>+</span></strong><p>tonnes of e-waste<br />produced every year</p></div>
-      <div class="impact-stat impact-stat-green reveal reveal-delay-2"><strong>20<span>%</span></strong><p>properly recycled<br />worldwide</p></div>
+      <div class="impact-heading reveal"><h2 data-i18n="impactTitle">The world has<br /><em>enough tech.</em></h2><p data-i18n="impactIntro">The world produces more than 50 million tonnes of e-waste every year. Less than 20% is properly recycled. Revalto Tech is built to change that.</p></div>
+      <div class="impact-stat reveal reveal-delay"><strong>50M<span>+</span></strong><p data-i18n="impactStatOne">tonnes of e-waste<br />produced every year</p></div>
+      <div class="impact-stat impact-stat-green reveal reveal-delay-2"><strong>20<span>%</span></strong><p data-i18n="impactStatTwo">properly recycled<br />worldwide</p></div>
     </section>
 
     <section class="contact-section section-shell" id="contact">
-      <div class="contact-intro reveal"><h2>Let’s give your<br />tech a <em>second life.</em></h2><p>Tell us what you need, what you have, or what you want to repair. We’ll help you find the most practical next step.</p><div class="contact-details"><a href="mailto:hello@revalto.tech">hello@revalto.tech</a><span>Mon–Fri / 09:00–17:00</span></div></div>
+      <div class="contact-intro reveal"><h2 data-i18n="contactTitle">Let’s give your<br />tech a <em>second life.</em></h2><p data-i18n="contactIntro">Tell us what you need, what you have, or what you want to repair. We’ll help you find the most practical next step.</p><div class="contact-details"><a href="mailto:hello@revalto.tech">hello@revalto.tech</a><span data-i18n="contactHours">Mon–Fri / 09:00–17:00</span></div></div>
       <form class="quote-form reveal reveal-delay" id="quote-form">
-        <label for="name">Your name <span>*</span></label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Smith" />
-        <label for="email">Work email <span>*</span></label><input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@company.com" />
-        <label for="requirement">How can we help? <span>*</span></label><textarea id="requirement" name="requirement" rows="4" required placeholder="e.g. refurbished laptops for a small team, or a server drive replacement"></textarea>
-        <button class="button button-lime button-submit" type="submit">Send inquiry</button>
+        <label for="name" data-i18n="labelName">Your name <span>*</span></label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Smith" data-i18n-placeholder="namePlaceholder" />
+        <label for="email" data-i18n="labelEmail">Work email <span>*</span></label><input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@company.com" data-i18n-placeholder="emailPlaceholder" />
+        <label for="requirement" data-i18n="labelRequirement">How can we help? <span>*</span></label><textarea id="requirement" name="requirement" rows="4" required placeholder="e.g. network switches for a small office, or a server drive replacement" data-i18n-placeholder="requirementPlaceholder"></textarea>
+        <button class="button button-lime button-submit" type="submit" data-i18n="sendInquiry">Send inquiry</button>
         <p class="form-note" id="form-note" role="status"></p>
       </form>
     </section>
   </main>
 
-  <footer class="site-footer section-shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>revalto<span class="brand-accent">.</span>tech</span></a><p>Refurbished hardware for a more sustainable cycle.</p><span class="footer-code">RVLT / 2026</span></footer>
+  <footer class="site-footer section-shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>revalto<span class="brand-accent">.</span>tech</span></a><p data-i18n="footerText">Refurbished hardware for a more sustainable cycle.</p><span class="footer-code">RVLT / 2026</span></footer>
   <script src="script.js"></script>
 </body>
 </html>

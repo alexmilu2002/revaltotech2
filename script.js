@@ -3,24 +3,327 @@ const formNote = document.querySelector('#form-note');
 const siteHeader = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
 const mainNav = document.querySelector('#main-nav');
+const languageSelect = document.querySelector('#language-select');
 
-menuToggle.addEventListener('click', () => {
-  const isOpen = siteHeader.classList.toggle('menu-open');
-  menuToggle.setAttribute('aria-expanded', String(isOpen));
-  menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-});
+const translations = {
+  en: {
+    navProducts: 'Products',
+    navWhy: 'Why us',
+    navContact: 'Contact',
+    quoteButton: 'Request a quote',
+    heroTitle: 'Tech with a<br /><em>second life.</em>',
+    heroSubtitle: 'From network equipment and servers to professional repairs and business-grade components, Revalto Tech brings hands-on experience from working with brands such as Samsung, Micron, Cisco, Kingston, SK hynix and many more.',
+    findSolution: 'Find your solution',
+    exploreHardware: 'Explore our hardware',
+    visualLabel: 'HARDWARE / 001',
+    visualReady: 'TESTED / READY',
+    visualHistory: 'Hardware with history',
+    productsTitle: 'Tech that fits<br /><em>your world.</em>',
+    productsIntro: 'Whether you need dependable network hardware, a server refresh, or components for an entire infrastructure, we take the time to understand what will work for you. Built on hands-on experience working with Samsung, Micron, Cisco, Kingston, SK hynix and many more.',
+    cardOneTitle: 'Network Equipment',
+    cardOneText: 'We help you source reliable switches, routers, and networking hardware that keeps your infrastructure stable, secure, and ready to scale.',
+    cardOneLink: 'Talk network needs',
+    cardTwoTitle: 'Components',
+    cardTwoText: 'Need an SSD, memory, server drive, or accessory? We’ll help you find the right part, not just any part.',
+    cardTwoLink: 'Talk components',
+    cardThreeTitle: 'Repairs & enterprise',
+    cardThreeText: 'When something stops working, we look for the sensible fix and help businesses keep moving.',
+    cardThreeLink: 'Talk to our team',
+    whyTitle: 'We believe good<br />tech deserves a <em>future.</em>',
+    whyIntro: 'We started Revalto because too much useful technology is discarded too soon. We recover, test, repair, and repurpose hardware so more people can get reliable tech without the unnecessary cost or waste.',
+    principleOneTitle: 'We listen first',
+    principleOneText: 'You won’t get a one-size-fits-all answer from us. We ask what you’re trying to do, then recommend what makes sense.',
+    principleTwoTitle: 'We keep it practical',
+    principleTwoText: 'Our job is to make good technology easier to access, easier to maintain, and easier on your budget.',
+    principleThreeTitle: 'We care what happens next',
+    principleThreeText: 'Every repair and reuse decision is a chance to keep equipment useful and reduce the pressure on our planet.',
+    impactTitle: 'The world has<br /><em>enough tech.</em>',
+    impactIntro: 'The world produces more than 50 million tonnes of e-waste every year. Less than 20% is properly recycled. Revalto Tech is built to change that.',
+    impactStatOne: 'tonnes of e-waste<br />produced every year',
+    impactStatTwo: 'properly recycled<br />worldwide',
+    contactTitle: 'Let’s give your<br />tech a <em>second life.</em>',
+    contactIntro: 'Tell us what you need, what you have, or what you want to repair. We’ll help you find the most practical next step.',
+    contactHours: 'Mon–Fri / 09:00–17:00',
+    labelName: 'Your name <span>*</span>',
+    labelEmail: 'Work email <span>*</span>',
+    labelRequirement: 'How can we help? <span>*</span>',
+    sendInquiry: 'Send inquiry',
+    footerText: 'Refurbished hardware for a more sustainable cycle.',
+    namePlaceholder: 'Jane Smith',
+    emailPlaceholder: 'jane@company.com',
+    requirementPlaceholder: 'e.g. network switches for a small office, or a server drive replacement',
+    formSubmitted: 'Thanks, {name}. Your inquiry is ready for the Revalto team.'
+  },
+  nl: {
+    navProducts: 'Producten',
+    navWhy: 'Waarom ons',
+    navContact: 'Contact',
+    quoteButton: 'Vraag offerte aan',
+    heroTitle: 'Technologie met een<br /><em>tweede leven.</em>',
+    heroSubtitle: 'Van netwerkapparatuur en servers tot professionele reparaties en hoogwaardige componenten: Revalto Tech heeft praktijkervaring opgebouwd met merken zoals Samsung, Micron, Cisco, Kingston, SK hynix en vele anderen.',
+    findSolution: 'Vind uw oplossing',
+    exploreHardware: 'Ontdek onze hardware',
+    visualLabel: 'HARDWARE / 001',
+    visualReady: 'GETEST / KLAAR',
+    visualHistory: 'Hardware met geschiedenis',
+    productsTitle: 'Techniek die past bij<br /><em>uw wereld.</em>',
+    productsIntro: 'Of u nu betrouwbare netwerkhardware, een serverupgrade of componenten voor een volledige infrastructuur nodig heeft, we luisteren eerst naar wat het beste werkt voor u. Gebouwd op praktische ervaring met merken als Samsung, Micron, Cisco, Kingston, SK hynix en vele anderen.',
+    cardOneTitle: 'Netwerkapparatuur',
+    cardOneText: 'We helpen u bij het vinden van betrouwbare switches, routers en netwerkhardware die uw infrastructuur stabiel, veilig en schaalbaar houden.',
+    cardOneLink: 'Praat over netwerkbehoeften',
+    cardTwoTitle: 'Componenten',
+    cardTwoText: 'Heeft u een SSD, geheugen, serverdrive of accessoire nodig? We helpen u het juiste onderdeel te vinden, niet alleen het dichtstbijzijnde.',
+    cardTwoLink: 'Praat over componenten',
+    cardThreeTitle: 'Reparaties & enterprise',
+    cardThreeText: 'Wanneer iets niet werkt, zoeken we naar de juiste oplossing zodat uw bedrijf soepel kan blijven draaien.',
+    cardThreeLink: 'Praat met ons team',
+    whyTitle: 'We geloven dat goede<br />techniek een <em>toekomst</em> verdient.',
+    whyIntro: 'We begonnen met Revalto omdat te veel nuttige technologie te vroeg wordt weggegooid. We herstellen, testen, repareren en hergebruiken hardware zodat meer mensen betrouwbare technologie kunnen gebruiken zonder onnodige kosten of afval.',
+    principleOneTitle: 'We luisteren eerst',
+    principleOneText: 'U krijgt geen one-size-fits-all antwoord van ons. We vragen wat u wilt bereiken en adviseren daarna wat logisch is.',
+    principleTwoTitle: 'We houden het praktisch',
+    principleTwoText: 'Ons werk is technologie beter toegankelijk, onderhoudbaarder en betaalbaarder te maken.',
+    principleThreeTitle: 'We zorgen voor wat daarna komt',
+    principleThreeText: 'Elke reparatie en elk hergebruik is een kans om apparatuur nuttig te houden en de druk op onze planeet te verminderen.',
+    impactTitle: 'De wereld heeft<br /><em>genoeg techniek.</em>',
+    impactIntro: 'De wereld produceert jaarlijks meer dan 50 miljoen ton e-waste. Minder dan 20% wordt correct gerecycled. Revalto Tech is gebouwd om dat te veranderen.',
+    impactStatOne: 'ton e-waste<br />dat jaarlijks wordt geproduceerd',
+    impactStatTwo: 'correct gerecycled<br />wereldwijd',
+    contactTitle: 'Laat uw<br />techniek een <em>tweede leven</em> krijgen.',
+    contactIntro: 'Vertel ons wat u nodig heeft, wat u heeft of wat u wilt laten repareren. We helpen u de meest praktische volgende stap te vinden.',
+    contactHours: 'Ma–Vr / 09:00–17:00',
+    labelName: 'Uw naam <span>*</span>',
+    labelEmail: 'Werk e-mail <span>*</span>',
+    labelRequirement: 'Hoe kunnen we helpen? <span>*</span>',
+    sendInquiry: 'Verstuur bericht',
+    footerText: 'Gerefurbisheerde hardware voor een duurzamere cyclus.',
+    namePlaceholder: 'Jan Jansen',
+    emailPlaceholder: 'jan@bedrijf.nl',
+    requirementPlaceholder: 'bijv. netwerk switches voor een klein kantoor, of een serverdrive vervanging',
+    formSubmitted: 'Bedankt, {name}. Uw aanvraag staat klaar voor het Revalto-team.'
+  },
+  de: {
+    navProducts: 'Produkte',
+    navWhy: 'Warum wir',
+    navContact: 'Kontakt',
+    quoteButton: 'Angebot anfragen',
+    heroTitle: 'Technik mit einem<br /><em>zweiten Leben.</em>',
+    heroSubtitle: 'Von Netzwerkgeräten und Servern bis hin zu professionellen Reparaturen und hochwertigen Komponenten bringt Revalto Tech praktische Erfahrung mit Marken wie Samsung, Micron, Cisco, Kingston, SK hynix und vielen weiteren mit.',
+    findSolution: 'Lösung finden',
+    exploreHardware: 'Hardware entdecken',
+    visualLabel: 'HARDWARE / 001',
+    visualReady: 'GETESTET / BEREIT',
+    visualHistory: 'Hardware mit Geschichte',
+    productsTitle: 'Technik, die zu<br /><em>deiner Welt</em> passt.',
+    productsIntro: 'Egal, ob Sie dependable Netzwerkhardware, ein Server-Refresh oder Komponenten für eine gesamte Infrastruktur benötigen, wir hören erst zu, damit wir das Richtige für Sie empfehlen. Aufbauend auf praktischer Erfahrung mit Marken wie Samsung, Micron, Cisco, Kingston, SK hynix und vielen weiteren.',
+    cardOneTitle: 'Netzwerkgeräte',
+    cardOneText: 'Wir helfen Ihnen dabei, zuverlässige Switches, Router und Netzwerkhardware zu finden, die Ihre Infrastruktur stabil, sicher und skalierbar machen.',
+    cardOneLink: 'Netzwerkbedarf besprechen',
+    cardTwoTitle: 'Komponenten',
+    cardTwoText: 'Benötigen Sie eine SSD, Speicher, Server-Drive oder Zubehör? Wir helfen Ihnen, das passende Teil zu finden, nicht nur irgendeines.',
+    cardTwoLink: 'Komponenten besprechen',
+    cardThreeTitle: 'Reparaturen & Enterprise',
+    cardThreeText: 'Wenn etwas nicht funktioniert, suchen wir nach der sinnvollsten Lösung und helfen Unternehmen, weiterzuwirken.',
+    cardThreeLink: 'Mit unserem Team sprechen',
+    whyTitle: 'Wir glauben, gute<br />Technik verdient eine <em>Zukunft.</em>',
+    whyIntro: 'Revalto begann, weil zu viel nützliche Technologie zu schnell entsorgt wird. Wir bergen, testen, reparieren und wiederverwenden Hardware, damit mehr Menschen zuverlässige Technik ohne unnötige Kosten oder Abfall nutzen können.',
+    principleOneTitle: 'Wir hören zuerst zu',
+    principleOneText: 'Von uns bekommen Sie keine Einheitslösung. Wir fragen, was Sie erreichen möchten, und empfehlen dann das sinnvollste Vorgehen.',
+    principleTwoTitle: 'Wir bleiben praktisch',
+    principleTwoText: 'Unsere Aufgabe ist es, gute Technik einfacher zugänglich, wartbarer und günstiger zu machen.',
+    principleThreeTitle: 'Wir denken an das Ende',
+    principleThreeText: 'Jede Reparatur und Wiederverwendung ist eine Chance, Geräte nutzbar zu halten und den Druck auf unseren Planeten zu reduzieren.',
+    impactTitle: 'Die Welt hat<br /><em>genug Technik.</em>',
+    impactIntro: 'Die Welt produziert jedes Jahr mehr als 50 Millionen Tonnen Elektroschrott. Weniger als 20 % werden richtig recycelt. Revalto Tech wurde entwickelt, um das zu ändern.',
+    impactStatOne: 'Tonnen Elektroschrott<br />pro Jahr produziert',
+    impactStatTwo: 'richtig recycelt<br />weltweit',
+    contactTitle: 'Geben Sie Ihrer<br />Technik ein <em>zweites Leben.</em>',
+    contactIntro: 'Sagen Sie uns, was Sie brauchen, was Sie haben oder was Sie reparieren möchten. Wir helfen Ihnen, den sinnvollsten nächsten Schritt zu finden.',
+    contactHours: 'Mo–Fr / 09:00–17:00',
+    labelName: 'Ihr Name <span>*</span>',
+    labelEmail: 'Arbeits-E-Mail <span>*</span>',
+    labelRequirement: 'Wie können wir helfen? <span>*</span>',
+    sendInquiry: 'Anfrage senden',
+    footerText: 'Aufbereitete Hardware für einen nachhaltigen Kreislauf.',
+    namePlaceholder: 'Max Mustermann',
+    emailPlaceholder: 'max@unternehmen.de',
+    requirementPlaceholder: 'z. B. Netzwerk-Switches für ein kleines Büro oder ein Server-Drive Ersatz',
+    formSubmitted: 'Danke, {name}. Ihre Anfrage ist für das Revalto-Team bereit.'
+  },
+  fr: {
+    navProducts: 'Produits',
+    navWhy: 'Pourquoi nous',
+    navContact: 'Contact',
+    quoteButton: 'Demander un devis',
+    heroTitle: 'Une technologie avec<br /><em>une seconde vie.</em>',
+    heroSubtitle: 'Des équipements réseau et des serveurs aux réparations professionnelles en passant par les composants de qualité professionnelle, Revalto Tech apporte une expérience pratique acquise avec des marques comme Samsung, Micron, Cisco, Kingston, SK hynix et bien d’autres.',
+    findSolution: 'Trouvez votre solution',
+    exploreHardware: 'Explorez notre matériel',
+    visualLabel: 'MATÉRIEL / 001',
+    visualReady: 'TESTÉ / PRÊT',
+    visualHistory: 'Matériel avec histoire',
+    productsTitle: 'La technologie qui correspond<br /><em>à votre monde.</em>',
+    productsIntro: 'Que vous ayez besoin d’équipements réseau fiables, d’un renouvellement de serveurs ou de composants pour une infrastructure complète, nous prenons le temps de comprendre ce qui fonctionnera le mieux pour vous. Basé sur une expérience pratique avec des marques comme Samsung, Micron, Cisco, Kingston, SK hynix et bien d’autres.',
+    cardOneTitle: 'Équipements réseau',
+    cardOneText: 'Nous vous aidons à trouver des switchs, routeurs et matériels réseau fiables qui maintiennent votre infrastructure stable, sécurisée et prête à évoluer.',
+    cardOneLink: 'Parlons de vos besoins réseau',
+    cardTwoTitle: 'Composants',
+    cardTwoText: 'Vous avez besoin d’un SSD, de mémoire, d’un disque serveur ou d’un accessoire ? Nous vous aiderons à trouver la bonne pièce, pas juste n’importe laquelle.',
+    cardTwoLink: 'Parlons composants',
+    cardThreeTitle: 'Réparations & entreprise',
+    cardThreeText: 'Quand quelque chose ne fonctionne plus, nous cherchons la solution la plus sensée pour aider les entreprises à avancer.',
+    cardThreeLink: 'Parlez à notre équipe',
+    whyTitle: 'Nous croyons que la bonne<br />technologie mérite un <em>avenir.</em>',
+    whyIntro: 'Nous avons fondé Revalto parce que trop de technologies utiles sont jetées trop tôt. Nous récupérons, testons, réparons et réutilisons le matériel pour que davantage de personnes aient accès à une technologie fiable sans coûts inutiles ni gaspillage.',
+    principleOneTitle: 'Nous écoutons d’abord',
+    principleOneText: 'Vous n’aurez pas une réponse standardisée de notre part. Nous demandons ce que vous voulez faire et vous recommandons ensuite ce qui a du sens.',
+    principleTwoTitle: 'Nous gardons un sens pratique',
+    principleTwoText: 'Notre travail consiste à rendre la bonne technologie plus accessible, plus facile à entretenir et plus respectueuse de votre budget.',
+    principleThreeTitle: 'Nous pensons à ce qui suit',
+    principleThreeText: 'Chaque réparation et chaque réutilisation est une occasion de garder les équipements utiles et de réduire la pression sur notre planète.',
+    impactTitle: 'Le monde a<br /><em>assez de technologie.</em>',
+    impactIntro: 'Le monde produit plus de 50 millions de tonnes de déchets électroniques chaque année. Moins de 20 % sont correctement recyclés. Revalto Tech a été conçu pour changer cela.',
+    impactStatOne: 'de tonnes de déchets électroniques<br />produites chaque année',
+    impactStatTwo: 'correctement recyclées<br />dans le monde',
+    contactTitle: 'Offrez à votre<br />technologie une <em>seconde vie.</em>',
+    contactIntro: 'Dites-nous ce dont vous avez besoin, ce que vous possédez ou ce que vous souhaitez faire réparer. Nous vous aiderons à trouver la prochaine étape la plus pratique.',
+    contactHours: 'Lun–Ven / 09:00–17:00',
+    labelName: 'Votre nom <span>*</span>',
+    labelEmail: 'E-mail pro <span>*</span>',
+    labelRequirement: 'Comment pouvons-nous vous aider ? <span>*</span>',
+    sendInquiry: 'Envoyer la demande',
+    footerText: 'Matériel reconditionné pour un cycle plus durable.',
+    namePlaceholder: 'Marie Martin',
+    emailPlaceholder: 'marie@entreprise.fr',
+    requirementPlaceholder: 'par ex. switchs réseau pour un petit bureau ou un remplacement de disque serveur',
+    formSubmitted: 'Merci, {name}. Votre demande est prête pour l’équipe Revalto.'
+  },
+  ar: {
+    navProducts: 'المنتجات',
+    navWhy: 'لماذا نحن',
+    navContact: 'تواصل',
+    quoteButton: 'اطلب عرض سعر',
+    heroTitle: 'تكنولوجيا بحياة<br /><em>ثانية.</em>',
+    heroSubtitle: 'من معدات الشبكات والخوادم إلى الإصلاحات المهنية والمكونات عالية الجودة، تتمتع ريفالتو تيك بخبرة عملية مع علامات تجارية مثل Samsung و Micron و Cisco و Kingston و SK hynix وغيرها الكثير.',
+    findSolution: 'ابحث عن الحل المناسب',
+    exploreHardware: 'استكشف معداتنا',
+    visualLabel: 'معدات / 001',
+    visualReady: 'مُفحوص / جاهز',
+    visualHistory: 'معدات ذات تاريخ',
+    productsTitle: 'تكنولوجيا تناسب<br /><em>عالمك.</em>',
+    productsIntro: 'سواء كنت تحتاج إلى معدات شبكة موثوقة أو تحديث خوادم أو مكونات كاملة للبنية التحتية، فإننا نأخذ الوقت لفهم ما الذي سيعمل بشكل أفضل لك. مبني على خبرة عملية مع علامات تجارية مثل Samsung و Micron و Cisco و Kingston و SK hynix وغيرها الكثير.',
+    cardOneTitle: 'معدات الشبكات',
+    cardOneText: 'نساعدك في الحصول على محولات، وجوجيهات، ومعدات شبكة موثوقة تحافظ على استقرار بنيتك التحتية وأمانها وجاهزيتها للتوسع.',
+    cardOneLink: 'تحدث عن احتياجات الشبكة',
+    cardTwoTitle: 'المكونات',
+    cardTwoText: 'هل تحتاج إلى SSD أو ذاكرة أو قرص خادم أو ملحق؟ سنساعدك في العثور على القطعة المناسبة، وليس أي قطعة.',
+    cardTwoLink: 'تحدث عن المكونات',
+    cardThreeTitle: 'الإصلاحات ومشاريع المؤسسات',
+    cardThreeText: 'عندما لا يعمل شيء، نبحث عن الحل الأكثر منطقية لمساعدة الشركات على الاستمرار في الحركة.',
+    cardThreeLink: 'تحدث إلى فريقنا',
+    whyTitle: 'نؤمن أن التكنولوجيا الجيدة<br />تستحق <em>مستقبلًا.</em>',
+    whyIntro: 'بدأنا ريفالتو لأن الكثير من التكنولوجيا المفيدة يتم التخلص منها قبل أوانها. نحن نستعيد المعدات ونختبرها ونصلحها ونعيد استخدامها حتى يتمكن المزيد من الناس من الحصول على تكنولوجيا موثوقة دون تكلفة أو هدر غير ضروريين.',
+    principleOneTitle: 'نستمع أولاً',
+    principleOneText: 'لن تحصل على إجابة مقاس واحد تناسب الجميع من جانبنا. نسأل ما الذي تحاول تحقيقه، ثم نوصي بما له معنى.',
+    principleTwoTitle: 'نحافظ على التطبيق العملي',
+    principleTwoText: 'مهمتنا هي جعل التكنولوجيا الجيدة أسهل في الوصول إليها، وأسهل في الصيانة، وأرخص على ميزانيتك.',
+    principleThreeTitle: 'نحن نهتم بما سيحدث لاحقًا',
+    principleThreeText: 'كل إصلاح وإعادة استخدام هو فرصة للحفاظ على المعدات فعالة وتقليل الضغط على كوكبنا.',
+    impactTitle: 'العالم لديه<br /><em>تكنولوجيا كافية.</em>',
+    impactIntro: 'يُنتج العالم أكثر من 50 مليون طن من النفايات الإلكترونية سنويًا. أقل من 20% يتم إعادة تدويرها بشكل صحيح. تم تصميم ريفالتو تيك لتغيير ذلك.',
+    impactStatOne: 'طن من النفايات الإلكترونية<br />يتم إنتاجها كل عام',
+    impactStatTwo: 'يتم إعادة تدويرها بشكل صحيح<br />على مستوى العالم',
+    contactTitle: 'دع تكنولوجياك تحصل على<br /><em>حياة ثانية.</em>',
+    contactIntro: 'أخبرنا بما تحتاجه، وما لديك، أو ما تريد إصلاحه. سنساعدك في العثور على الخطوة العملية التالية.',
+    contactHours: 'من الإثنين إلى الجمعة / 09:00–17:00',
+    labelName: 'اسمك <span>*</span>',
+    labelEmail: 'البريد الإلكتروني للعمل <span>*</span>',
+    labelRequirement: 'كيف يمكننا مساعدتك؟ <span>*</span>',
+    sendInquiry: 'إرسال الاستفسار',
+    footerText: 'أجهزة مُعاد تأهيلها لدورة أكثر استدامة.',
+    namePlaceholder: 'سارة أحمد',
+    emailPlaceholder: 'sara@company.com',
+    requirementPlaceholder: 'مثل: محولات للشبكة لمكتب صغير أو استبدال قرص خادم',
+    formSubmitted: 'شكرًا لك، {name}. طلبك جاهز لفريق ريفالتو.'
+  }
+};
 
-mainNav.addEventListener('click', (event) => {
-  if (!event.target.closest('a')) return;
+const setLanguage = (lang) => {
+  const selectedLanguage = translations[lang] ? lang : 'en';
+  const activeTranslations = translations[selectedLanguage];
 
-  siteHeader.classList.remove('menu-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Open menu');
-});
+  document.documentElement.lang = selectedLanguage;
+  document.body.setAttribute('dir', selectedLanguage === 'ar' ? 'rtl' : 'ltr');
 
-quoteForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const name = new FormData(quoteForm).get('name');
-  formNote.textContent = `Thanks, ${name}. Your inquiry is ready for the Revalto team.`;
-  quoteForm.reset();
-});
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    const key = element.dataset.i18n;
+    const value = activeTranslations[key];
+    if (!value) return;
+    element.innerHTML = value;
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+    const key = element.dataset.i18nPlaceholder;
+    const value = activeTranslations[key];
+    if (!value) return;
+    element.placeholder = value;
+  });
+
+  const nameInput = document.querySelector('#name');
+  const emailInput = document.querySelector('#email');
+  const requirementInput = document.querySelector('#requirement');
+
+  if (nameInput && activeTranslations.namePlaceholder) {
+    nameInput.placeholder = activeTranslations.namePlaceholder;
+  }
+  if (emailInput && activeTranslations.emailPlaceholder) {
+    emailInput.placeholder = activeTranslations.emailPlaceholder;
+  }
+  if (requirementInput && activeTranslations.requirementPlaceholder) {
+    requirementInput.placeholder = activeTranslations.requirementPlaceholder;
+  }
+
+  localStorage.setItem('revalto-language', selectedLanguage);
+  if (languageSelect) {
+    languageSelect.value = selectedLanguage;
+  }
+};
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = siteHeader.classList.toggle('menu-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+}
+
+if (mainNav) {
+  mainNav.addEventListener('click', (event) => {
+    if (!event.target.closest('a')) return;
+
+    siteHeader.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
+  });
+}
+
+if (quoteForm) {
+  quoteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = new FormData(quoteForm).get('name') || 'there';
+    const language = languageSelect?.value || 'en';
+    const text = translations[language]?.formSubmitted?.replace('{name}', name);
+    formNote.textContent = text || `Thanks, ${name}. Your inquiry is ready for the Revalto team.`;
+    quoteForm.reset();
+  });
+}
+
+if (languageSelect) {
+  languageSelect.addEventListener('change', (event) => {
+    const selectedLanguage = event.target.value;
+    setLanguage(selectedLanguage);
+  });
+}
+
+const savedLanguage = localStorage.getItem('revalto-language') || 'en';
+setLanguage(savedLanguage);
