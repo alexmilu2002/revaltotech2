@@ -27,7 +27,7 @@ const translations = {
     cardTwoText: 'Need an SSD, memory, server drive, or accessory? We’ll help you find the right part, not just any part.',
     cardTwoLink: 'Talk components',
     cardThreeTitle: 'Repairs & enterprise',
-    cardThreeText: 'When something stops working, we look for the sensible fix and help businesses keep moving.',
+    cardThreeText: 'When something stops working, we look for the sensible fix and help businesses keep moving. Our team has experience in repairing and refurbishing electronic components.',
     cardThreeLink: 'Talk to our team',
     whyTitle: 'We believe good<br />tech deserves a <em>future.</em>',
     whyIntro: 'We started Revalto because too much useful technology is discarded too soon. We recover, test, repair, and repurpose hardware so more people can get reliable tech without the unnecessary cost or waste.',
